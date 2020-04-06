@@ -1,0 +1,128 @@
+/* CSS Reset */
+ul, h1, h2{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style-type: none;
+}
+/* Typography */
+h1{
+  font-size: 800%;
+}
+h2{
+  font-size: 337.5%
+}
+ul{
+  font-size: 200%;
+}
+span{
+  font-size: 100%;
+}
+button{
+  font-size: 50%;
+}
+input, ul, span{
+  font-weight: bold;
+}
+/* Commons */
+body{
+  /* background-color: peru; */
+  user-select: none;
+  text-align: center;
+  color: #fff;
+}
+button, input{
+  background: 0;
+  border: none;
+  outline: none;
+}
+.trash-hover:hover i{
+  color: lightcoral;
+  border-color: lightcoral; 
+}
+input{
+  width: 70%;
+  font-size: 200%;
+  border-bottom: 3px solid lightcoral;
+  text-align: center;
+  color: #fff;
+}
+input::placeholder {
+  color: lightcoral;
+  font-style: italic;
+}
+/* .btn{
+  cursor: pointer;
+}
+.clicked{
+  color : #7f8c8d;
+} */
+.form,
+.greetings{
+  display: none;
+}
+.showing{
+  display: block;
+}
+.focus{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.js-clock{
+  /* background-color: #efefef; */
+  /* font-size: 500%; */
+  line-height: 1;
+  text-shadow: 0 1px 5px rgba(0,0,0,.1);
+  letter-spacing: -5px;
+}
+/* 
+  🤔 label 요소를 placeholder처럼 사용 하되 입력시 없어지도록
+  기존 폰트 몇을 기준으로 h1, h2의 비율만큼 적용할 순 없나? 미백만 방법 결국 일괄적으로 적용
+*/
+.js-greetings, .js-toDoForm{
+  text-shadow: 0 1px 5px rgba(0,0,0,.1);
+  margin: 20px 0;
+  line-height: 1;
+}
+.js-toDoList > li{
+  clear: both;
+  /* display: table; */
+}
+.js-toDoList > li > span{
+  /* display: table-cell; */
+}
+/* 
+  float된 요소 text와 같아지기 위해 mt적용 
+  table을 이용한 vertiacl은 붙게됨
+*/
+.js-toDoList > li > button{
+  float: right;
+  margin-top: 8px;
+}
+.js-weather{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  text-align: right;
+  color: lightcoral;
+}
+.bgImg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn .5s linear;
+}
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
