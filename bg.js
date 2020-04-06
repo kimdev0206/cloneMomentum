@@ -3,7 +3,7 @@ const body = document.querySelector('body');
 const IMG_NUM = 4;
 function paintImg(imgNum){
     const img = new Image(); // img생성자
-    img.src = `https://yongki150.github.io/images/${imgNum}.jpg`;
+    img.src = `https://yongki150.github.io/cloneMomentum/images/${imgNum}.jpg`;
     img.classList.add('bgImg');
     body.prepend(img); // 👍 append 반대 prepend
 }
