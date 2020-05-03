@@ -5,6 +5,7 @@ ul, h1, h2{
 }
 li{
   list-style-type: none;
+  font-size: 200%; /* input과 맞춤 */
 }
 /* Typography */
 h1{
@@ -13,19 +14,24 @@ h1{
 h2{
   font-size: 337.5%
 }
-ul{
-  font-size: 200%;
-}
-span{
-  font-size: 100%;
-}
-button{
+/* ul{
+  font-size: 300%;
+} */
+/* span{
   font-size: 50%;
+} */
+button{
+  font-size: 50%; 
 }
 input, ul, span{
   font-weight: bold;
 }
 /* Commons */
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
+}
 body{
   /* background-color: peru; */
   user-select: none;
@@ -37,7 +43,19 @@ button, input{
   border: none;
   outline: none;
 }
-.trash-hover:hover i{
+.pl{
+  position: absolute;
+  left: 0;
+}
+.pr{
+  position: absolute;
+  right: 0;
+}
+.checked{
+  text-decoration: line-through;
+  color: lightgray;
+}
+.hover:hover i{
   color: lightcoral;
   border-color: lightcoral; 
 }
@@ -73,7 +91,6 @@ input::placeholder {
 }
 .js-clock{
   /* background-color: #efefef; */
-  /* font-size: 500%; */
   line-height: 1;
   text-shadow: 0 1px 5px rgba(0,0,0,.1);
   letter-spacing: -5px;
@@ -87,19 +104,27 @@ input::placeholder {
   margin: 20px 0;
   line-height: 1;
 }
-.js-toDoList > li{
+.js-toDoList > li::after{
+  content: '';
   clear: both;
+  display: block;
   /* display: table; */
 }
 .js-toDoList > li > span{
-  /* display: table-cell; */
+  /* display: inline; */
 }
 /* 
   float된 요소 text와 같아지기 위해 mt적용 
-  table을 이용한 vertiacl은 붙게됨
+  table을 이용한 vertiacl은 text와 떨어지지않음
+  text(vt) float button 정렬안됨
+  float button(vt) 적용안됨
+
+  결론 : 어떤 요소(input)와 맞출 전체적인 틀(li)에 font-size를 적용하고
+  아이콘에 css적용
+  
 */
 .js-toDoList > li > button{
-  float: right;
+  /* float: right; */
   margin-top: 8px;
 }
 .js-weather{
