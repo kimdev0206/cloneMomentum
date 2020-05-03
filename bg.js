@@ -3,6 +3,7 @@ const body = document.querySelector('body');
 const IMG_NUM = 4;
 function paintImg(imgNum){
     const img = new Image(); // img생성자
+    // console.log(typeof(imgNum));
     img.src = `images/${imgNum}.jpg`;
     img.classList.add('bgImg');
     body.prepend(img); // 👍 append 반대 prepend

@@ -9,7 +9,7 @@ function getWeather(lat, lon){
         // console.log(response.json()); // url의 json 정보(Obj형태)(기다리는상태) → Promise {<pending>}
         return response.json();
     }).then(function(json){
-        console.log(json); // json 정보 (기다리는 상태x)
+        // console.log(json); // json 정보 (기다리는 상태x)
         const temperature = json.main.temp;
         const place = json.name;
         const state = json.weather[0].description; 
