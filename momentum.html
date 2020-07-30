@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Momentum</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
+
 <body>
+    <script>
+
+    </script>
+    <script type="text/x-handlebars-template" id="btn-template">
+        <!-- https://www.youtube.com/watch?v=4HuAnM6b2d8 -->
+        {{#if "isFinBtn" element}}
+        <span class="hover">
+            <i class="fa fa-lg {{DONE}} fa-border" id="{{id}}"></i>
+        </span>
+        {{else}}
+        <span class="hover">
+            <i class="fa fa-lg fa-trash de fa-border" aria-hidden="true"></i>
+        </span>
+        {{/if}}
+    </script>
+    <!-- <script type="text/x-handlebars-template" id="delBtn-template">
+        <span class="hover">
+        </span>
+    </script> -->
+    <div class="flash-message"></div>
     <div class="focus">
         <div class="js-clock">
             <h1>00:00</h1>
@@ -15,12 +38,14 @@
         <form class="js-form form">
             <input type="text" placeholder="What is your name">
         </form>
-        <h2 class="js-greetings greetings"></h2>
+        <h3 class="js-greetings greetings">Good Morning</h3>
+        <div class="js-message">
+            <p>😎띵언 "<span class="message"></span>"😎</p>
+        </div>
         <form class="js-toDoForm">
             <input type="text" placeholder="Write a to do">
         </form>
-        <ul class="js-toDoList">
-        </ul>
+        <ul class="js-toDoList"></ul>
     </div>
     <span class="js-weather"></span>
     <script src="clock.js"></script>
@@ -28,5 +53,7 @@
     <script src="todo.js"></script>
     <script src="bg.js"></script>
     <script src="weather.js"></script>
+    <script src="message.js"></script>
 </body>
+
 </html>

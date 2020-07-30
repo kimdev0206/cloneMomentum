@@ -24,50 +24,78 @@ function deleteToDo(event) {
 function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDosArr));
 }
+function useTemplate(DONE, task, btnType) {
+    let script = document.getElementById('btn-template'),
+        template = Handlebars.compile(script.text);
+
+    // console.log(script.text);
+    let data = {
+        element: {
+            DONE: DONE, id: task.id
+        }
+    };
+    
+    Handlebars.registerHelper('if', (data, element, options) => {
+        if(data === btnType){
+            return options.fn(element);
+        }else{
+            return options.inverse(this);
+        }
+    })
+
+    let html = template(data);
+    console.log(html);
+
+    return html;
+}
 function paintToDo(task) {
     const li = document.createElement('li'),
         finBtn = document.createElement('button'),
         delBtn = document.createElement('button'),
         span = document.createElement('span');
 
+
     const DONE = task.check ? CHECK : UNCHECK;
     const LINE = task.check ? LINE_THROUGH : '';
-    const COLOR = task.check ? 'lightgray' : '';
+    const COLOR = task.check ? 'lightgray' : 'white';
 
+    
     finBtn.classList.add("pl");
-    finBtn.innerHTML = `<span class="hover" style="color: #fff;"><i class="fa ${DONE} fa-lg fa-border" id="${task.id}"></i></span>`;
-    console.log(span);
-
-    span.style.textDecoration = `${LINE}`;
-    li.style.color = `${COLOR}`;
-
     delBtn.classList.add("pr");
-    delBtn.innerHTML = `<span class="hover" style="color: #fff;"><i class="fa fa-trash de fa-lg fa-border" aria-hidden="true"></i></span>`;
+    
+    finBtn.innerHTML = useTemplate(DONE, task, 'isFinBtn');
+    delBtn.innerHTML = useTemplate(DONE, task);
+    
+    span.style.textDecoration = `${LINE}`;
+    
+    li.style.color = `${COLOR}`;
+    li.style.position = 'relative';
+    
 
     finBtn.addEventListener('click', function (e) {
         const target = e.target;
         const li = e.target.parentElement.parentElement.parentElement;
         const span = li.children;
+        // console.log(span)
 
         // 기존 클래스에 동일이름 중첩이 된다!!
         target.classList.toggle(CHECK);
         target.classList.toggle(UNCHECK);
-        if(target.classList.contains(CHECK)){
-            span[1].style.textDecoration = 'line-through';
+        if (target.classList.contains(CHECK)) {
+            span[1].style.textDecoration = LINE_THROUGH;
             span[1].style.color = 'lightgray';
-        }else{
-            span[1].style.color = 'inherit';
+        } else {
+            span[1].style.color = 'white';
             span[1].style.textDecoration = 'none';
         }
-        li.classList.toggle(LINE_THROUGH);
         // if (hasClass) {
         //     target.classList.replace('fa-check-square', 'fa-check-square-o');
-        toDosArr.forEach(function(item){
-            if(item.id === target.id ){
+        toDosArr.forEach(function (item) {
+            if (item.id === target.id) {
                 item.check = item.check ? false : true;
             }
         });
-        console.log(toDosArr);
+        // console.log(toDosArr);
         saveToDos();
     });
     delBtn.addEventListener('click', deleteToDo);
@@ -81,7 +109,7 @@ function paintToDo(task) {
 
     toDoList.appendChild(li);
 
-    // saveToDos();
+    saveToDos();
 }
 
 //refresh이벤트초기화 및 input되는값에 적용할 함수
@@ -109,11 +137,11 @@ function loadToDos() {
     const loadedToDos = localStorage.getItem(TODOS_LS); // key를 받아옴
     if (loadedToDos !== null) {
         toDosArr = JSON.parse(loadedToDos); // string → object
-        
+
         //refresh해도 toDos를 불러와 화면에 저장된상태로 남아있도록
     }
-    toDosArr.forEach(function (toDo) { 
-        paintToDo(toDo); 
+    toDosArr.forEach(function (toDo) {
+        paintToDo(toDo);
     });
 }
 function init() {
